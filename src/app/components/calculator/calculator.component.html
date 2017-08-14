@@ -1,0 +1,79 @@
+
+<div class="container">
+  <div class="boxed">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+
+       <form [formGroup]="myForm" novalidate (ngSubmit)='save()'> 
+         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAAB0CAMAAAArd/mVAAAALVBMVEX////MAADfgIDeenrefHzy1tbIAADxzMzghYXTPj7bbGz24ODcb2/wycn23d0ThrzmAAAAx0lEQVR4nO3bWwrCQAyGUduO9VJ1/8t1A5OCws+0cM574HtNIJcLAAAAP/m8bx3vz+iuwrJOHesyuqsw92qnaR7dVZCbJDdJbpLcJLlJcpPkJslNkpskN0lu0sly7/3c+8im7bkU2qOf+2jVxHOL5167l6X/rFe5cuXKlStXrly5cuXKlSv36LnbqxXmanGfq4lXfnHfccSzyI6THZ3kJslNkpskN0luktwkuUlyk+QmyU2Sm3Sy3NZ/ommjuwone1ECAAA4rC8JgBFD0OdDrQAAAABJRU5ErkJggg==" id="img1">
+        <h2 id="h2_1"><b> Emergency Drugs Calculator - PICU</b></h2>
+        <h3 id="h3_1">Users of this calculator should have had the required training and should have read the user manual... <span class="glyphicon glyphicon-warning-sign"></span></h3><br>
+      <!--name validation  -->
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" formControlName="name" class="form-control" placeholder="Patient's Name" >
+
+            <small *ngIf="!myForm.controls.name.valid" class="text-danger" >
+                Name is required minimum 5 characters required
+           </small>
+        </div>
+      <!--DOB & AGE validation  -->
+       <div class="row">
+       
+        <div class="col-lg-6">
+         <div class="form-group">
+             <label>Date of Birth</label>
+             <input type="date" name="DOB"pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))*" formControlName="DOB" placeholder="Enter Date of Birth" class="form-control">
+             <small *ngIf="!myForm.controls.DOB.valid" class="text-danger" >
+               Date of Birth is Required(Must Correct)
+           </small>
+         </div>
+
+         <div class="form-group">
+             <label>Age</label>
+            <input type="number" min="1" max="100" formControlName="age" class="form-control" name="age" placeholder="Enter Patient's Age">
+            <small *ngIf="!myForm.controls.age.valid" class="text-danger" >
+               Age is Required 
+           </small>
+         </div>
+        </div>
+      
+        <div class="col-lg-6">
+           <div class="form-group">
+             <label>Hospital Code</label>
+             <input type="text" pattern ="[0-9]*" min="0" max="130" formControlName="HN" class="form-control" name="HN" placeholder="Enter Hospital Code">
+             <small *ngIf="!myForm.controls.HN.valid" class="text-danger" >
+               Hospital Code is Required 
+           </small>
+            </div>
+           <div class="form-group">
+               <label>Patient's Weight</label>
+               <input type="number" min="1" formControlName="weight" class="form-control" name="weight" placeholder="Enter Patient's weight">
+               <small *ngIf="!myForm.controls.weight.valid" class="text-danger" >
+                  Patient Weight is Required 
+               </small>
+            </div>
+       </div>
+      </div>
+
+  
+        <label>Ward</label>
+        <input type="text" placeholder="Ward" class="form-control" name="ward"><br>
+        <div class="form-group">
+            <label>Name of Prescriber</label>
+            <input type="text" formControlName="prescriber"  class="form-control" name="Prescriber" placeholder="Name of Prescriber">
+            <small *ngIf="!myForm.controls.prescriber.valid" class="text-danger" >
+                 prescriber's name is Required 
+            </small>
+        </div>
+           <button type="submit" [disabled]="!myForm.valid" class="btn btn-success">Submit</button>
+     </form>
+         </div>
+        <div class="col-lg-4"></div>
+     </div>
+   </div>
+</div>
+<button (click) ="next()"> Next</button>
+
+

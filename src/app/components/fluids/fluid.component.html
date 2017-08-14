@@ -1,0 +1,148 @@
+<div class="container">    
+  <div class= "row">
+    <div class="col-lg-6">
+      <h3>Name</h3>
+    </div>
+    <div class="col-lg-6">
+      <h3>MRN</h3>
+    </div>
+  </div>
+
+  <h2>FLUID CALCULATION</h2>
+  <div class="row">
+     <div class="col-lg-4">
+         <label>weight</label>
+         <input type="number">
+     </div>
+     <div class="col-lg-4">
+          <label>% dehydration</label>
+          <input type="number">
+     </div>
+     <div class="col-lg-4">
+         <label>Bolus Volume</label>
+         <input type="number">mls
+             1.0 mls/kg   
+     </div>
+  </div>
+    <h3>Maintenance fluids calculation</h3>
+    <table class="table table-borderd">
+       <thead>
+          <tr class="success">
+            <td>Weight</td>
+            <td>ml/kg/day</td>
+            <td>mls</td>    
+          </tr>    
+       </thead>   
+        <tbody>
+            <tr>
+                <!--condition  -->
+                 <td *ngIf="data.Rweight <= 10">{{data.Rweight*100}}kg</td>
+                 <td *ngIf="data.Rweight > 10">0kg</td>
+                 <!--condition  -->
+                <td>100</td>
+                <td>0</td>
+            </tr>
+
+            <tr>
+              <td>10-20 kg</td>
+              <td>1000ml+ 50ml per each kg above 10</td>
+              <td>1500</td>
+            </tr>
+
+            <tr>
+                <td>20-70 kg</td>
+                <td>1500 ml+20ml per each kg above 20</td>
+                <td>0</td>   
+            </tr>
+            <tr>
+                <td>Over 70 kg</td> 
+                <td>2500 ml (adult requirment)</td> 
+                <!--conditions  -->
+                <td *ngIf="data.Rweight > 70">2500</td> 
+                <td *ngIf="data.Rweight <= 70">0</td>
+                <!--conditions  -->
+            </tr>
+        </tbody> 
+    </table><br><br>
+   
+<div class="row">
+    <div clas="col-lg-6">
+     <table class="table table-striped">  
+        <tbody>
+            <tr>
+                <td>Total ml/kg/24 hours</td>
+                <td>1500</td>
+            </tr>
+
+            <tr>
+              <td>Total maintenance over 48 hours</td>
+              <td>3000</td>
+            </tr>
+
+            <tr>
+                <td> Subtract bolus fluid given</td>
+                <td>2980</td> 
+            </tr>
+            <tr>
+                <td> Rehydration value</td> 
+                <td>600</td> 
+            </tr>
+             <tr>
+                <td>  Total volume to be given over 48 hours</td> 
+                <td>3580</td> 
+            </tr>
+            <tr>
+                <td> Hourly fluid rate</td> 
+                <td> 75	mls/hour </td> 
+            </tr>
+        </tbody> 
+    </table>
+    </div>
+ <div class="col-lg-6"></div>
+</div>
+
+    <div class="boxed">
+       <h3>Choice of fluid:</h3><h4>Start with 0.9% Saline	Once BG < 17 mmol/l OR falling by >5 mmol/l/hour change to 5% dextrose/0.45% saline	</h4>
+    </div>
+
+     <h2>Insulin</h2>
+     <h4>Start IV Insulin infusion after 1-2 hours of IV fluids</h4><br>
+     <h4>Dilute 50 units Actrapid or Novorapid in 50 mls of 0.9% Saline to make a 1 unit/ml solution</h4><br>
+    <!--condition  -->
+     <h4>Initial Insulin Rate : 1mls/hour</h4><br>
+     <!--condition  -->
+     <table class="table-borderd">
+         <thead>
+             <tr>
+                 <td>Weight</td>
+                 <td></td>
+                 <td>mls/hour</td>
+             </tr>
+         </thead>
+            <tbody>
+                <tr>
+                    <td>0-20 kg</td>
+                    <td>0.05 units / kg / hour</td>
+                    <!--condition  -->
+                    <td>{{data.Rweight*0.05}}</td>
+                </tr>
+                <tr>
+                    <td>20-35 kg</td>
+                    <td>0.075 units / kg / hour</td>
+                    <!--condition  -->
+                    <td>{{data.Rweight*0.075}}</td>
+                </tr>
+                <tr>
+                    <td>>35 kg</td>
+                    <td>0.1 units / kg / hour</td>
+                    <!--condition  -->
+                    <td>{{data.Rweight*0.1}}</td>
+                </tr>
+            </tbody>
+     </table>
+</div>
+
+              
+
+<button (click) = "back()">Back</button><br>
+<button (click) = "next()">next</button>
